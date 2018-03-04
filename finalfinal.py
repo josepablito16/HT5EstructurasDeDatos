@@ -1,10 +1,20 @@
-# -*- coding: cp1252 -*-
-
+# FECHA: 04/03/2018
+# SIMULACION DE UN PROCESADOR CON LA AYUDA DE SIMPY
+# ALGORITMOS Y ESTRUCTURA DE DATOS
 # SERGIO MARCEHNA 16387
-# JOSE CIFUNETS 
+# JOSE CIFUNETS 17509
 
+#IMPORTACION DE LIBRERIAS
 import simpy
 import random
+
+#valores iniciales
+memoria=50#CANTIDAD DE MEMORIA
+tTotal=0#TIEMPO TOTAL DE LA CORRIDA DE PROCESOS
+cantidad=200 #PROCESOS
+intervalo=10#INTERCALO
+numeroCPU=1#NUMMERO DE PROCESADORES
+random.seed(0)#SE FIJA DE DONDE COMENZAR EL PSEUDORANDOM PARA QUE SIEMPRE COMIENCE DESDE 0
 
 #solo necesitamos definir ready. Porque en ready es donde pasa todo. 
 def ready(nombre, env, itotales,irestantes):
@@ -45,12 +55,8 @@ def ready(nombre, env, itotales,irestantes):
 # ------------------------------ ENVIRONMENT ----------------------------- #
 
 env=simpy.Environment()
-cpu=simpy.Resource(env,capacity = 2) #cantidad de procesadores
-#valores iniciales
-memoria=0
-tTotal=0
-cantidad=2 #PROCESOS
-intervalo=10
+cpu=simpy.Resource(env,capacity = numeroCPU) #cantidad de procesadores
+
 
 def procesos(env, memoria, cpu, intervalo):
     for i in range(cantidad):
